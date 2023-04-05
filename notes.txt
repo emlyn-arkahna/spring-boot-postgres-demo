@@ -323,3 +323,12 @@ spec:
         volumeAttributes:
           secretProviderClass: "azure-kvname-workload-identity"
 EOF
+
+{"error":"invalid_request","error_description":"AADSTS70021: No matching federated identity record found for presented assertion. Assertion Issuer: 'https://eastus.oic.prod-aks.azure.com/786f3c30-68aa-4476-a57d-f5ec5beda181/ddb7a07f-9f68-4503-ae3b-adfc06d51ec3/'. Assertion Subject: 'system:serviceaccount:test-secret:workload-identity-sa'. Assertion Audience: 'api://AzureADTokenExchange'. https://docs.microsoft.com/en-us/azure/active-directory/develop/workload-identity-federation\r\nTrace ID: c5fc2bb2-89c1-47da-8a98-b258d2518a00\r\nCorrelation ID: 4c8a88cb-7729-4edf-9d46-3f5fa2b2c3f3\r\nTimestamp: 2023-04-04 08:14:55Z","error_codes":[70021],"timestamp":"2023-04-04 08:14:55Z","trace_id":"c5fc2bb2-89c1-47da-8a98-b258d2518a00","correlation_id":"4c8a88cb-7729-4edf-9d46-3f5fa2b2c3f3","error_uri":"https://login.microsoftonline.com/error?code=70021"}
+
+
+FROM eclipse-temurin:17-jdk-alpine
+VOLUME /tmp
+ARG JAR_FILE
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
