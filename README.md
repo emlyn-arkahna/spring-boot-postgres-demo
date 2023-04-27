@@ -38,3 +38,19 @@ This is a standard Maven project, you can run it from your IDE, or using the pro
 ```bash
 ./mvnw spring-boot:run
 ```
+
+## Build the project
+
+First, build the standalone jar file
+
+
+```bash
+./mvnw package
+```
+
+Then, build and publish the Docker image
+
+```
+docker build --build-arg JAR_FILE=target/*.jar -t <MY_REGISTRY>.azurecr.io/spring-boot/<IMAGE_NAME>:<IMAGE_VERSION> .
+docker push <MY_REGISTRY>.azurecr.io/spring-boot/<IMAGE_NAME>:<IMAGE_VERSION>
+```
